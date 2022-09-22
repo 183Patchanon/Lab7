@@ -1,0 +1,38 @@
+1.6 From worker1 thread 15 x value is 3 64050183 ภัทรชนน จิตวิบูลย์
+    From worker2 thread 16 x value is 7 
+    from main x value is 7
+Q1 processing_row = tRow;
+   processing_col = tCol;
+   datA = a;
+   datB = b;
+   datC = c;
+Q2 public void run()
+Q3 for(int i = 0; i < datC.data.length; i++) //reset ans[][] to 0
+        {
+            for(int j = 0; j < datC.data[0].length; j++)
+            {
+                datC.data[i][j] = 0;
+            } 
+        }    
+
+        for(int i = 0; i < datA.data.length; i++)
+        {
+            for(int j = 0; j < datB.data[0].length; j++)
+            {
+                for(int k = 0; k < datB.data.length; k++)
+                {
+                    datC.data[i][j] += datA.data[i][k] * datB.data[k][j];
+                }
+            } 
+        }
+Q4 Thread t1 = new Thread(new MatrixMulThread(matC_r, matC_c, matA, matB, matC));
+   t1.start();
+Q5 try
+        {
+            t1.join();
+        }
+   catch(Exception e)
+        {
+            System.out.println(e);
+        }
+        matC.show();
